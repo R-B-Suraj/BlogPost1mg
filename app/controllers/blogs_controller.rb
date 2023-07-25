@@ -3,7 +3,7 @@ require 'securerandom'
 class BlogsController < ApplicationController
   
   def create 
-    blog = Blog.new
+    blog = Blog.new 
     blog.title = params[:title]
     blog.name = params[:name]
     blog.desc = params[:desc]
@@ -17,16 +17,14 @@ class BlogsController < ApplicationController
     end 
 
   end
-
   
   def all 
-    
+    @all_blogs = Blog.all
   end 
 
   def search 
 
   end 
-
 
 
 end

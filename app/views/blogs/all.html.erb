@@ -1,0 +1,16 @@
+<% @all_blogs.each do |post|%>
+
+
+    <% if post.img %>
+    <div style="border:2px solid brown; padding:10px; margin:10px; height:410px; width:400px">
+        <div style="font-size:20px; text-align:center; font-weight:700"><%=post.title%> </div>
+        <div style="height:250px; border:1px solid grey; background: url(<%= url_for(post.image)%>); background-size:cover"></div>
+        <div style="text-align:right;font-weight:600px; color: grey">by _<%=post.name%></div>
+        <div style="width:310px; border: 1px solid red; height:90px; word-wrap: break-word; overflow:scroll; padding:5px; color: grey "><%=post.desc%></div> 
+        <div style="text-align:right; background:light-grey"><a href="/" style="">comment</a></div>
+    </div>
+    <% end %>
+
+
+
+<% end %>
