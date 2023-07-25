@@ -7,9 +7,8 @@ Rails.application.routes.draw do
 
   get   "/blogs/write",    to: "blogs#write"    
   get   "/blogs/all",      to: "blogs#all"
-  get   "/blogs/search",   to: "blogs#search"
   post  "/blogs/create",   to: "blogs#create"
-
+  get "/blogs/:id/delete/:name", to: "blogs#delete"
 
 
 

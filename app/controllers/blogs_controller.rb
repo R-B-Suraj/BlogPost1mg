@@ -3,6 +3,7 @@ require 'securerandom'
 class BlogsController < ApplicationController
   
   def create 
+    
     blog = Blog.new 
     blog.title = params[:title]
     blog.name = params[:name]
@@ -11,7 +12,7 @@ class BlogsController < ApplicationController
     img_url = img_url = blog.save_image(params[:image]) if params[:image].present?
     blog.img = img_url 
     if blog.save 
-      render json: {message: 'New created successfully ! ', name: blog.name, url: blog.img}, status: :ok
+      redirect_to "/blogs/all"
     else
       render json: {error: 'failed to create blog'}
     end 
@@ -19,12 +20,20 @@ class BlogsController < ApplicationController
   end
   
   def all 
-    @all_blogs = Blog.all
+    @all_blogs = Blog.all.reverse_order
   end 
 
-  def search 
+  def delete 
 
-  end 
+    post = Blog.find(params[:id])
+    if(post.name == params[:name])
+      post.destroy
+      redirect_to "/blogs/all"
+    else
+      render json:{error: "You are not the owner of this post.",parameter: {id: params[:id], name: params[:name]}, post:{id:post.id, name:post.name}}, status: :unauthorized 
+    end
+
+  end
 
 
 end
