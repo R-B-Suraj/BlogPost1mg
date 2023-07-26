@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     def blog_comments
       @blog_id = params[:blog_id]
       @parent_id = params[:parent_id]
-
+    
       if params[:parent_id]=="0"
           @comments = Comment.where(parent_id: nil, blog_id: @blog_id)
       else

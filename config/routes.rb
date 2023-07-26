@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post "/blogs/:blog_id/comments/create/:parent_id",  to: "comments#create"
   get "/blogs/:blog_id/comments/:parent_id", to: "comments#blog_comments"
 
+  get "/blogs/:id", to: "blogs#blog"
 
 end

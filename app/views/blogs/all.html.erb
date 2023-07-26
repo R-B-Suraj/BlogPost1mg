@@ -1,21 +1,24 @@
 
 
-<% @all_blogs.each do |blog|%>
+
+<div style="display:flex; width:900px; flex-wrap: wrap">
+    <% @all_blogs.each do |blog|%>
 
 
-    <% if blog.img %>
-    <div style="border:2px solid brown; padding:10px; margin:10px; height:410px; width:400px">
-        <div style="font-size:20px; text-align:center; font-weight:700"><%=blog.title%> </div>
-        <div style="margin:5px; height:250px; border:1px solid grey; background: url(<%= url_for(blog.image)%>); background-size:cover"></div>
-        <div style="width:390px; border: 1px solid red; height:90px; word-wrap: break-word; overflow:scroll; padding:5px; color: grey "><%=blog.desc%></div> 
-        
-        <div style="text-align:right; background:light-grey">
-        <a href="http://localhost:3000/blogs/<%=blog.id%>/comments/0" >Comment</a>
+        <% if blog.img %>
+        <div style=" border:2px solid brown; padding:10px; margin:10px; height:410px; width:400px">
+            <div style="font-size:20px; text-align:center; font-weight:700"><%=blog.title%> </div>
+            <div style="margin:5px; height:250px; border:1px solid grey; background: url(<%= url_for(blog.image)%>); background-size:cover"></div>
+            <div style="width:390px; border: 1px solid red; height:90px; word-wrap: break-word; overflow:scroll; padding:5px; color: grey "><%=blog.desc%></div> 
+            
+            <div style="text-align:right; background:light-grey">
+            <a href="http://localhost:3000/blogs/<%=blog.id%>/comments/0" >Comment</a>
+            </div>
+
         </div>
+        <% end %>
 
-    </div>
+
     <% end %>
 
-
-
-<% end %>
+</div>
