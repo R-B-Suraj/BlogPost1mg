@@ -1,3 +1,6 @@
+
+
+
 <div style="border:2px solid grey; width: 600px;padding:10px;">
 
     <% @comments.each do |reply| %> 
@@ -8,9 +11,10 @@
 
     
     <form action="http://localhost:3000/blogs/<%=@blog_id%>/comments/create/<%=@parent_id%>" method="post"  style="margin-top:50px;">
-        <textarea type="text" name="comment" placeholder="comment here ....." rows=5 style="width:400px;"></textarea>
+        <textarea type="text" name="comment" placeholder="comment here ....." rows=5 style="width:400px;" require></textarea>
         <input type="submit" value="Submit">
     </form>
 
 
 </div>
+

@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
       @parent_id = params[:parent_id]
 
       if params[:parent_id]=="0"
-          @comments = Comment.where(parent_id: nil)
+          @comments = Comment.where(parent_id: nil, blog_id: @blog_id)
       else
           @comments = Comment.find(params[:parent_id]).replies
       end
