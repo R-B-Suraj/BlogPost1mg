@@ -36,7 +36,11 @@ class BlogsController < ApplicationController
   end
 
   def blog 
-    @blog = Blog.find(params[:id])
+    if Blog.exists?(params[:id])
+      @blog = Blog.find(params[:id])
+    else
+      render json:{message: "the blog is already deleted"}
+    end
   end
 
 
