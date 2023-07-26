@@ -2,9 +2,13 @@
 
 
 <div style="border:2px solid grey; width: 600px;padding:10px;">
-<%if @comments.first.parent %>
-<div style="margin-bottom:15px; font-size: 20px; font-weight:700">Reply to : <%=@comments.first.parent.text%> &nbsp &nbsp &nbsp <span style="font-weight:500; font-size:18px;"> on <a href="http://localhost:3000/blogs/<%=@blog_id %>">this Blog</a></span> </div>
+<div style="margin-bottom:15px; font-size: 20px; font-weight:700">Reply 
+
+<%if @comments.first && @comments.first.parent %>
+to : <%=@comments.first.parent.text%> &nbsp &nbsp &nbsp <span style="font-weight:500; font-size:18px;"> 
 <% end %>
+
+on <a href="http://localhost:3000/blogs/<%=@blog_id %>">this Blog</a></span> </div>
     <% @comments.each do |reply| %> 
         <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply</a> </div>
 
