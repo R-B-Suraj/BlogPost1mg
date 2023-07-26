@@ -9,7 +9,9 @@ to : <%=@parent_txt%> &nbsp &nbsp &nbsp <span style="font-weight:500; font-size:
 
 on <a href="http://localhost:3000/blogs/<%=@blog_id %>">this Blog</a></span> </div>
     <% @comments.each do |reply| %> 
-        <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply</a> </div>
+        <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply </a>
+          &nbsp &nbsp &nbsp<%=reply.replies.size %> replies
+        </div>
 
     <% end %>
 

@@ -2,6 +2,10 @@ require 'securerandom'
 
 class BlogsController < ApplicationController
   
+  def index
+    @blog_count= Blog.all.size
+  end
+  
   def create 
     
     blog = Blog.new 
@@ -42,6 +46,7 @@ class BlogsController < ApplicationController
       render json:{message: "the blog is already deleted"}
     end
   end
+
 
 
 end
