@@ -1,0 +1,16 @@
+<div style="border:2px solid grey; width: 600px;padding:10px;">
+
+    <% @comments.each do |reply| %> 
+        <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%><pre style="display:inline">     </pre> <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply</a> </div>
+
+    <% end %>
+
+
+    
+    <form action="http://localhost:3000/blogs/<%=@blog_id%>/comments/create/<%=@parent_id%>" method="post"  style="margin-top:50px;">
+        <textarea type="text" name="comment" placeholder="comment here ....." rows=5 style="width:400px;"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</div>

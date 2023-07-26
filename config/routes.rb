@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post  "/blogs/create",   to: "blogs#create"
   get "/blogs/:id/delete/:name", to: "blogs#delete"
 
+  post "/blogs/:blog_id/comments/create/:parent_id",  to: "comments#create"
+  get "/blogs/:blog_id/comments/:parent_id", to: "comments#blog_comments"
 
 
 end
