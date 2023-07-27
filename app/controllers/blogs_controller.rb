@@ -3,7 +3,7 @@ require 'securerandom'
 class BlogsController < ApplicationController
   
   def index
-    @blog_count= Blog.all.size
+    @blog_count= Blog.where(deleted:0).size
   end
   
   def create 
