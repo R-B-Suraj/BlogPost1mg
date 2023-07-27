@@ -24,14 +24,15 @@ class BlogsController < ApplicationController
   end
   
   def all 
-    @all_blogs = Blog.all.reverse_order
+    @all_blogs = Blog.where(deleted: 0).reverse_order
   end 
 
   def delete 
 
     post = Blog.find(params[:id])
     if(post.name == params[:name])
-      post.destroy
+      # post.destroy
+      post.update(deleted: 1)
       redirect_to "/blogs/all"
     else
       render json:{error: "You are not the owner of this post.",parameter: {id: params[:id], name: params[:name]}, post:{id:post.id, name:post.name}}, status: :unauthorized 
@@ -41,9 +42,14 @@ class BlogsController < ApplicationController
 
   def blog 
     if Blog.exists?(params[:id])
-      @blog = Blog.find(params[:id])
+      blog = Blog.find(params[:id])
+      if(blog.deleted == 0)
+        @blog = blog 
+      else
+        render json: {message: "the blog doesn't exist"}
+      end
     else
-      render json:{message: "the blog is already deleted"}
+      render json:{message: "the blog doesn't exist"}
     end
   end
 

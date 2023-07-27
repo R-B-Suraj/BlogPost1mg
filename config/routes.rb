@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get "/blogs/:id", to: "blogs#blog"
   delete "/blogs/:id", to: "blogs#delete"
 
+  
+
 end
