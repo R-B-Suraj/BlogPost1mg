@@ -10,17 +10,17 @@ class BlogsController < ApplicationController
   end
   
   def create 
-  
-    blog = Blog.new 
-    blog.title = params[:title]
-    blog.desc = params[:desc]
-    blog.user_id = current_user.id
-    img_url = img_url = blog.save_image(params[:image]) if params[:image].present?
-    blog.img = img_url 
-    if blog.save 
+    
+    @blog = Blog.new
+    @blog.title = params[:title]
+    @blog.desc = params[:desc]
+    @blog.user_id = current_user.id
+    img_url = img_url = @blog.save_image(params[:image]) if params[:image].present?
+    @blog.img = img_url 
+    if @blog.save 
       redirect_to "/blogs/all"
     else
-      render json: {error: 'failed to create blog'}
+      render :write
     end 
 
   end

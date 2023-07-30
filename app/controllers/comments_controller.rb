@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 
+  before_action :authenticate_user!, except: [:blog_comments]
 
 
     def blog_comments
