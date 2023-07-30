@@ -1,7 +1,7 @@
 
 <%= render partial: 'shared/header' %>
 
-<div style="display:flex; width:900px; flex-wrap: wrap">
+<div style="display:flex; width:900px; flex-wrap: wrap; margin-left:50px">
     <% @all_blogs.each do |blog|%>
 
 
@@ -12,11 +12,15 @@
             <div style="width:390px; border: 1px solid red; height:90px; word-wrap: break-word; overflow:scroll; padding:5px; color: grey "><%=blog.desc%></div> 
             
         <div style="text-align:right; display:flex; justify-content:space-between; margin:5px;">
+        
+        <div>
+        <% if current_user != nil && current_user.email == blog.user.email %>
         <form action="http://localhost:3000/blogs/<%=blog.id%>" method="delete">
-            <label>Id : </label>
-            <input type = "text" name="name">
             <input type="submit" value="Delete" style="background:red; color:white" required>
         </form>
+        <% end %>
+        </div>
+        
         <a href="http://localhost:3000/blogs/<%=blog.id%>/comments/0" >Comment</a>
         </div>
 

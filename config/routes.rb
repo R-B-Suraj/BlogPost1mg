@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get "/blogs/:id", to: "blogs#blog"
   delete "/blogs/:id", to: "blogs#delete"
 
-  get "auth/sign_out", to: "blogs#index"
+  get "auth/sign_out", to: "users#sign_out"
 
 end

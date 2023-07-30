@@ -2,7 +2,7 @@ require 'securerandom'
 
 class BlogsController < ApplicationController
   
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, except: [:all, :index]
 
 
   def index
@@ -13,9 +13,8 @@ class BlogsController < ApplicationController
   
     blog = Blog.new 
     blog.title = params[:title]
-    blog.name = params[:name]
     blog.desc = params[:desc]
-
+    blog.user_id = current_user.id
     img_url = img_url = blog.save_image(params[:image]) if params[:image].present?
     blog.img = img_url 
     if blog.save 
@@ -32,13 +31,15 @@ class BlogsController < ApplicationController
 
   def delete 
 
+
+
     post = Blog.find(params[:id])
-    if(post.name == params[:name])
+    if(post.user_id == current_user.id)
       # post.destroy
       post.update(deleted: 1)
       redirect_to "/blogs/all"
     else
-      render json:{error: "You are not the owner of this post.",parameter: {id: params[:id], name: params[:name]}, post:{id:post.id, name:post.name}}, status: :unauthorized 
+      render json:{error: "You are not the owner of this post."}
     end
 
   end

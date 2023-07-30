@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, stretches: 13
          
   
-  
+  has_many :blogs
 
 
 end
