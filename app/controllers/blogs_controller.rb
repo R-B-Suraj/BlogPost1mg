@@ -2,12 +2,15 @@ require 'securerandom'
 
 class BlogsController < ApplicationController
   
+  before_action :authenticate_user!, only: [:create]
+
+
   def index
     @blog_count= Blog.where(deleted:0).size
   end
   
   def create 
-    
+  
     blog = Blog.new 
     blog.title = params[:title]
     blog.name = params[:name]

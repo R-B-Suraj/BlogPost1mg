@@ -1,27 +1,34 @@
-
-
-<div style="border:2px solid grey; width: 600px;padding:10px;">
-<div style="margin-bottom:15px; font-size: 20px; font-weight:700">Reply 
-
-<%if @parent_txt  %>
-to : <%=@parent_txt%> &nbsp &nbsp &nbsp <span style="font-weight:500; font-size:18px;"> 
-<% end %>
-
-on <a href="http://localhost:3000/blogs/<%=@blog_id %>">this Blog</a></span> </div>
-    <% @comments.each do |reply| %> 
-        <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply </a>
-          &nbsp &nbsp &nbsp<%=reply.replies.size %> replies
-        </div>
-
-    <% end %>
-
-    
-    <form action="http://localhost:3000/blogs/<%=@blog_id%>/comments/create/<%=@parent_id%>" method="post"  style="margin-top:50px;">
-        <textarea type="text" name="comment" placeholder="comment here ....." rows=5 style="width:450px;" required></textarea>
-        <input type="submit" value="Submit">
-    </form>
-    </br>
-    <a href="http://localhost:3000/">Home</a>
-
+<div>
+<%= render partial: 'shared/header' %>
 </div>
 
+<div style="margin-left:50px">
+
+    <div style="border:2px solid grey; width: 600px;padding:10px;">
+    <div style="margin-bottom:15px; font-size: 20px; font-weight:700">Reply 
+
+    <%if @parent_txt  %>
+    to : <%=@parent_txt%> &nbsp &nbsp &nbsp <span style="font-weight:500; font-size:18px;"> 
+    <% end %>
+
+    on <a href="http://localhost:3000/blogs/<%=@blog_id %>">this Blog</a></span> </div>
+        <% @comments.each do |reply| %> 
+            <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply </a>
+            &nbsp &nbsp &nbsp<%=reply.replies.size %> replies
+            </div>
+
+        <% end %>
+
+        
+        <form action="http://localhost:3000/blogs/<%=@blog_id%>/comments/create/<%=@parent_id%>" method="post"  style="margin-top:50px;">
+            <textarea type="text" name="comment" placeholder="comment here ....." rows=5 style="width:450px;" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+        </br>
+        <a href="http://localhost:3000/">Home</a>
+
+    </div>
+    </br>
+    </br>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+</div>

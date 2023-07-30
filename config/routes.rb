@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, path:'auth'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -15,6 +16,6 @@ Rails.application.routes.draw do
   get "/blogs/:id", to: "blogs#blog"
   delete "/blogs/:id", to: "blogs#delete"
 
-  
+  get "auth/sign_out", to: "blogs#index"
 
 end
