@@ -1,14 +1,15 @@
 
 <%= render partial: 'shared/header' %>
 
-<div style="display:flex; width:900px; flex-wrap: wrap; margin-left:50px">
+<div style="display:flex; width:910px; flex-wrap: wrap; margin-left:50px">
     <% @all_blogs.each do |blog|%>
 
 
         <% if blog.img %>
-        <div style=" border:2px solid brown; padding:10px; margin:10px; height:410px; width:400px; background:#f8f8f8">
+        <div style=" border:2px solid brown; padding:10px; margin:10px; height:430px; width:400px; background:#f8f8f8">
             <div style="font-size:20px; text-align:center; font-weight:700"><%=blog.title%> </div>
             <div style="margin:5px; height:250px; border:1px solid grey; background: url(<%= url_for(blog.image)%>); background-size:cover"></div>
+            <div style="text-align:right; color:grey;margin-bottom:5px;"><%=blog.user.email.split("@")[0]%></div>
             <div style="width:390px; border: 1px solid brown; height:90px; word-wrap: break-word; overflow:scroll; padding:5px; color: grey; background:white "><%=blog.desc%></div> 
             
         <div style="text-align:right; display:flex; justify-content:space-between; margin:5px;">

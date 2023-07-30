@@ -12,12 +12,16 @@
     <% end %>
 
     on <a href="http://localhost:3000/blogs/<%=@blog_id %>">this Blog</a></span> </div>
-        <% @comments.each do |reply| %> 
-            <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply </a>
+        
+    
+    <% @comments.each do |reply| %> 
+            <div style="padding:10px; border-radius:10px; word-wrap:break-word; margin:5px; background:#E8E8E8"> 
+            
+            <span style="font-weight: 700"><%=reply.user.email.split('@')[0] %>  : </span> <%=reply.text%> &nbsp &nbsp &nbsp <a href="http://localhost:3000/blogs/<%=@blog_id%>/comments/<%=reply.id%>">reply </a>
             &nbsp &nbsp &nbsp<%=reply.replies.size %> replies
             </div>
 
-        <% end %>
+    <% end %>
 
         
         <form action="http://localhost:3000/blogs/<%=@blog_id%>/comments/create/<%=@parent_id%>" method="post"  style="margin-top:50px;">
