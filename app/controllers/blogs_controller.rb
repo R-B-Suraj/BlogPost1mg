@@ -26,7 +26,11 @@ class BlogsController < ApplicationController
   end
   
   def all 
-    @all_blogs = Blog.where(deleted: 0).reverse_order
+    if params[:user_id]
+      @all_blogs = Blog.where(deleted:0, user_id: params[:user_id]).reverse_order
+    else
+      @all_blogs = Blog.where(deleted: 0).reverse_order
+    end
   end 
 
   def delete 

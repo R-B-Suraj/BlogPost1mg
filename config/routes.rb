@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get   "/blogs/write",    to: "blogs#write"    
   get   "/blogs/all",      to: "blogs#all"
+  get   "/blogs/all/:user_id",   to: "blogs#all"
   post  "/blogs/create",   to: "blogs#create"
 
   post "/blogs/:blog_id/comments/create/:parent_id",  to: "comments#create"

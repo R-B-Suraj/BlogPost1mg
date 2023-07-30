@@ -3,6 +3,11 @@
 <% if user_signed_in? %>
     <%= current_user.email %>
     &nbsp; &nbsp; &nbsp; &nbsp;
+    <a href="http://localhost:3000/blogs/all/<%=current_user.id%>">My Blogs </a>
+    &nbsp;
+    <%=Blog.where(deleted:0,user_id:current_user.id).count %>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+
   <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 
 <% else %>

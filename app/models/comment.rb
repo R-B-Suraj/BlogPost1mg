@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
     has_many :replies, class_name: 'Comment', foreign_key: :parent_id, dependent: :destroy
 
 
-    validate :text, presence: true, length:{minimum:1, maximum:200}
+    validates :text, presence: true, length:{minimum:1, maximum:200}
 
 
 
