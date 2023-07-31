@@ -1,5 +1,8 @@
 
 <div style = "margin: 20px 50px; font-weight: 700">
+<a href="http://localhost:3000/">Home</a>
+&nbsp; &nbsp;
+
 <% if user_signed_in? %>
     <%= current_user.email %>
     &nbsp; &nbsp; &nbsp; &nbsp;
@@ -13,5 +16,7 @@
 <% else %>
 <%= link_to "Sign in", new_user_session_path %>
 <% end %>
+
+
 
 </div>

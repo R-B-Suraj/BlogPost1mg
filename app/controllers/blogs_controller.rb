@@ -1,5 +1,7 @@
 require 'securerandom'
 
+
+
 class BlogsController < ApplicationController
   
   before_action :authenticate_user!, except: [:all, :index]
@@ -9,22 +11,27 @@ class BlogsController < ApplicationController
     @blog_count= Blog.where(deleted:0).size
   end
   
+
+
   def create 
-    
+
     @blog = Blog.new
     @blog.title = params[:title]
     @blog.desc = params[:desc]
     @blog.user_id = current_user.id
-    img_url = img_url = @blog.save_image(params[:image]) if params[:image].present?
+    img_url = @blog.save_image(params[:image]) if params[:image].present?
     @blog.img = img_url 
+
     if @blog.save 
       redirect_to "/blogs/all"
     else
-      render :write
+      render :write 
     end 
 
   end
   
+
+
   def all 
     if params[:user_id]
       @all_blogs = Blog.where(deleted:0, user_id: params[:user_id]).reverse_order
@@ -33,9 +40,9 @@ class BlogsController < ApplicationController
     end
   end 
 
+
+
   def delete 
-
-
 
     post = Blog.find(params[:id])
     if(post.user_id == current_user.id)
@@ -61,6 +68,26 @@ class BlogsController < ApplicationController
     end
   end
 
+  def edit 
+    id = params[:id]
+    if Blog.exists?(id)
+      @blog = Blog.where(deleted:0,id:id)[0]
+      render :edit
+    else
+      render json:{error:{message: "resource not found"}}
+    end
+  end
 
+  def update 
+    @blog = Blog.find(params[:id])
+    
+    img_url = @blog.save_image(params[:image]) if params[:image].present?
+    
+    if @blog.update({title: params[:title], desc: params[:desc], user_id:current_user.id, img:img_url}) 
+      redirect_to "/blogs/all"
+    else
+      render :write
+    end
+  end
 
 end

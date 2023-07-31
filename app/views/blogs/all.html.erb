@@ -21,8 +21,12 @@
         </form>
         <% end %>
         </div>
-        
+        <% if current_user != nil && current_user.email == blog.user.email %>
+            <a href="http://localhost:3000/blogs/edit/<%=blog.id%>" >Edit</a>
+        <% end %>
+
         <a href="http://localhost:3000/blogs/<%=blog.id%>/comments/0" >Comment</a>
+
         </div>
 
         
